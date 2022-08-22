@@ -35,14 +35,12 @@ target_link_libraries(${APP_NAME}
     PUBLIC Qt5::Gui
     PUBLIC Qt5::Widgets
     PUBLIC Qt5::Network
-    PRIVATE ${QSS_LIBRARY_VAR}
+    PUBLIC QtShadowsocks
     PRIVATE ${QRENCODE_LIBRARY_VAR}
     PRIVATE ${ZBAR_LIBRARY_VAR})
 target_include_directories(${APP_NAME}
-    PRIVATE ${QSS_INCLUDE_DIRS}
     PRIVATE ${QRENCODE_INCLUDE_DIRS}
     PRIVATE ${ZBAR_INCLUDE_DIRS})
-
 if (UNIX AND NOT APPLE)
     target_link_libraries(${APP_NAME} PRIVATE Qt5::DBus)
 endif()

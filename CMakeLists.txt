@@ -11,6 +11,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_INSTALL_PREFIX "/usr")
+set(USE_BOTAN2 ON)
 
 find_package(Qt5Core)
 find_package(Qt5Gui)
@@ -20,11 +22,8 @@ if(UNIX AND NOT APPLE)
     find_package(Qt5DBus)
 endif()
 find_package(PkgConfig)
-
-pkg_check_modules(QSS REQUIRED QtShadowsocks>=2.0.0)
-find_library(QSS_LIBRARY_VAR
-    NAMES ${QSS_LIBRARIES}
-    HINTS ${QSS_LIBRARY_DIRS} ${QSS_LIBDIR})
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+include(fetch/qtshadowsocks)
 
 pkg_check_modules(QRENCODE REQUIRED libqrencode)
 find_library(QRENCODE_LIBRARY_VAR
